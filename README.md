@@ -4,7 +4,7 @@ Monitoring service for easy server metrics logging
 ## Quick Start
 
 ```
-sudo chmod 777 data/grafana/*
+sudo chown -R 472:472 /data/grafana/
 docker-compose up --build
 ```
 
