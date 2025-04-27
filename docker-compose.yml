@@ -10,6 +10,8 @@ services:
       - ./data/grafana:/var/lib/grafana
     ports:
       - 3000:3000
+    networks:
+      - kodzuverse
 
   influxdb:
     image: influxdb:1.8
@@ -21,17 +23,19 @@ services:
       - 8086
     ports:
       - 8086:8086
+    networks:
+      - kodzuverse
 
   telegraf:
-    image: telegraf:1.21.2
-    container_name: monitoring_telegraf
-    restart: always
+    image: docker.io/telegraf:latest
+    container_name: telegraf
+    user: root
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
       - ./data/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
-    links:
-      - influxdb
-    ports:
-      - "8092:8092/udp"
-      - "8094:8094"
-      - "8125:8125/udp"
+    networks:
+      - kodzuverse
+
+networks:
+  kodzuverse:
+    name: kodzuverse_network
+    external: true

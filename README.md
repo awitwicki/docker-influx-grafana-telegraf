@@ -41,7 +41,10 @@ URL: http://localhost:8086
 Port: 8086
 ```
 
-### InfluxDB Shell (CLI)
+### InfluxDB first setup
 
-1. Establish a ssh connection with the container
-2. Launch `influx` to open InfluxDB Shell (CLI)
+1. Open terminal
+2. Run `influxdb3 create token --admin` and save generated api token
+3. Create initial database `influxdb3 create database {dbname} --token {TOKEN from step 2}`
+
+
